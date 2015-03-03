@@ -42,32 +42,60 @@ $("#imgSearchBtn").click(function() {
                 imgDiv = document.createElement("li");
                 imgDiv.className = "item-masonry";
                 
+                var del;
                 
                 var imgTag = $('<img />');
                 imgTag.attr("src", src[i]);
                 
                 imgTag.click(function(event) {
                 	console.log(event);
+	                	
                 	$.ajax({
-            			url: "test00.jsp",
-            			type: "GET",
-            			data:{ "url" : event.target.src
-            			},
-	        	        dataType: "text",
-	        	        timeout: 30000,
-	        	        
-	        	        success: function(data) {
-	        	            console.log(data);
-	        	           alert("성공");
-	        	           alert(data);
-	        	            var imgTag1 = $('<img />');
-	                        imgTag1.attr("src", event.target.src);
-	                       
-	                        $('#dropRegion').append(imgTag1);
-    	        }  	       
-    		});
-                	
-                });
+	            			url: "test00.jsp",
+	            			type: "GET",
+	            			data:{ "url" : event.target.src
+	            			},
+		        	        dataType: "text",
+		        	        timeout: 30000,
+		        	        
+		        	        success: function(data) {
+		        	            console.log(data);
+		        	           alert("성공");
+		        	           alert(data);
+		        	           
+		        	          // if(data.status ==1)
+		        	         //  {
+		        	           	var imgTag1 = $('<img />');
+		                        imgTag1.attr("src", event.target.src);
+		                       del =  $('#dropRegion').append(imgTag1);
+		                        
+		        	          // }
+		        	          // else
+		        	          // {
+		        	        	//   alert("실패!");
+		        	          // }
+		                       del.click(function(event) {
+		                       	console.log(event);
+		                       	
+		                       	$.ajax({
+		                   			url: "test00.jsp",
+		                   			type: "GET",
+		                   			data:{ "url" : event.target.src
+		                   			},
+		       	        	        dataType: "text",
+		       	        	        timeout: 30000,
+		       	        	        
+		       	        	        success: function(data) {
+		       	        	            console.log(data);
+		       	        	            
+		       	        	            del.remove();
+		       	        	        }
+		                       });
+		                      });
+	    	        }  	       
+	    		});
+           });
+                
                 
                 var imgContainer = $('<div class="the-box default margin mansory-inner">');
                 
@@ -93,8 +121,8 @@ $("#imgSearchBtn").click(function() {
         }
     })
 });
-
-
+	
+	
 
 /*
 $("#dropRegion").droppable({
