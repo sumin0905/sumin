@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insert title here</title>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+			$('h1').click(function(){
+				$(this).html(function (index,html){
+					return html + '*';
+				});
+			});
+			
+			setInterval(function(){
+				$('h1').eq(2).trigger('click');
+			}, 1000);
+			
+			
+		});
+		
+		
+	
+	</script>
+</head>
+<body>
+ 
+ 	<h1>start: </h1>
+ 	<br>
+ 	<h1>start: </h1>
+	 <br>
+ 	<h1>start: </h1>
+ 	
+</body>
+</html>
